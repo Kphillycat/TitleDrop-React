@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { moviesRef } from "../utils/firebase";
+import moviesRef from "../utils/firebase";
 
 class App extends Component {
   state = {
@@ -7,8 +7,10 @@ class App extends Component {
   };
 
   componentWillMount() {
+    console.time("-- TitleDrop Time --");
+
     moviesRef.on("value", dataSnapShot => {
-      // console.timeEnd('-- TitleDrop Time --');
+      console.timeEnd("-- TitleDrop Time --");
 
       var movies = dataSnapShot.val();
       console.log("Got the movies");
