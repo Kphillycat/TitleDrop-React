@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "build:dev": "webpack --mode=development",
+    "clean": "rm -rf dist/",
+    "build": "npm run clean && webpack --mode=production",
+    "build:dev": "npm run clean && webpack --mode=development",
     "format": "prettier --write --single-quote --print-width=120 \"src/**/*.{js,jsx,css}\"",
     "lint": "eslint -c .eslintrc.json src/*.{js,jsx} --quiet",
     "watch": "npm run build -- --watch"
