@@ -5,7 +5,9 @@
         "prettier/react"
     ],
     "plugins": [
-        "prettier"
+        "prettier",
+        "react",
+        "jsx-a11y"
     ],
     "parser": "babel-eslint",
     "parserOptions": {
