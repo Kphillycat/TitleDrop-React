@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import MovieCard from "./MovieCard";
 import moviesRef from "../utils/firebase";
 import narutoRun from "../naruto_run.gif";
 
@@ -27,11 +28,13 @@ class App extends Component {
       <div>
         {loading
           ? <img src={narutoRun} />
-          : <pre>
-              <code>
-                {JSON.stringify(movies, null, 4)}
-              </code>
-            </pre>}
+          : Object.keys(movies).map(key => (
+              <MovieCard
+                key={movies[key].title}
+                title={movies[key].title}
+                time={movies[key].time}
+              />
+            ))}
       </div>
     );
   }

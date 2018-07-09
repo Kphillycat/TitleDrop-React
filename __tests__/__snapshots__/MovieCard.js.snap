@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render MovieCard 1`] = `
+<div
+  data-testid="movie-card"
+>
+  <h3>
+    Title: 
+    Test
+  </h3>
+  <div>
+    Time: 
+    00:00:00
+  </div>
+</div>
+`;
