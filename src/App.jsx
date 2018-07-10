@@ -1,7 +1,14 @@
 import React, { Component } from "react";
-import MovieCard from "./MovieCard";
+import styled from "styled-components";
 import moviesRef from "../utils/firebase";
 import narutoRun from "../naruto_run.gif";
+import MovieCard from "./MovieCard";
+
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1em;
+`;
 
 class App extends Component {
   state = {
@@ -16,8 +23,6 @@ class App extends Component {
       const movies = dataSnapShot.val();
       console.timeEnd("-- TitleDrop Time --");
 
-      console.log("Got the movies");
-      console.log(movies);
       this.setState({ movies, loading: false });
     });
   }
@@ -26,15 +31,20 @@ class App extends Component {
     const { movies, loading } = this.state;
     return (
       <div>
-        {loading
-          ? <img src={narutoRun} />
-          : Object.keys(movies).map(key => (
-              <MovieCard
-                key={movies[key].title}
-                title={movies[key].title}
-                time={movies[key].time}
-              />
-            ))}
+        <h1>
+          WHEN THEY SAY IT!!
+        </h1>
+        <Container>
+          {loading
+            ? <img alt="Loading the movies" src={narutoRun} />
+            : Object.keys(movies).map(key => (
+                <MovieCard
+                  key={movies[key].title}
+                  title={movies[key].title}
+                  time={movies[key].time}
+                />
+              ))}
+        </Container>
       </div>
     );
   }
