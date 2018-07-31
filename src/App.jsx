@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import moviesRef from "../utils/firebase";
+import { moviesRef, auth } from "../utils/firebase";
 import narutoRun from "../naruto_run.gif";
 import MovieCard from "./MovieCard";
+import SignIn from "./SignIn";
 
 const Container = styled.div`
   display: grid;
@@ -13,10 +14,14 @@ const Container = styled.div`
 class App extends Component {
   state = {
     movies: [],
-    loading: true
+    loading: true,
+    currentUser: null
   };
 
   componentWillMount() {
+    auth.onAuthStateChanged(currentUser => {
+      this.setState({ currentUser });
+    });
     console.time("-- TitleDrop Time --");
 
     moviesRef.on("value", dataSnapShot => {
@@ -28,12 +33,14 @@ class App extends Component {
   }
 
   render() {
-    const { movies, loading } = this.state;
+    const { movies, loading, currentUser } = this.state;
     return (
       <div>
         <h1>
           WHEN THEY SAY IT!!
         </h1>
+        {!currentUser && <SignIn />}
+        {currentUser && <h3> {currentUser.displayName} </h3>}
         <Container>
           {loading
             ? <img alt="Loading the movies" src={narutoRun} />

@@ -4,7 +4,7 @@ const webpackMerge = require("webpack-merge");
 const modeConfig = env => require(`./build-utils/webpack.${env}`)(env);
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-module.exports = (env, { mode }) =>
+module.exports = (env, { mode = "development" }) =>
   webpackMerge(
     {
       mode,
